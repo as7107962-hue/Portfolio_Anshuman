@@ -33,6 +33,8 @@ export function Navbar() {
     };
   }, [isOpen]);
 
+  const menuId = "mobile-menu";
+
   return (
     <header className="site-header">
       <Container>
@@ -63,7 +65,7 @@ export function Navbar() {
               className="nav-toggle"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              aria-controls="mobile-menu"
+              aria-controls={menuId}
               onClick={() => setIsOpen((prev) => !prev)}
             >
               <span />
@@ -74,15 +76,19 @@ export function Navbar() {
         </div>
       </Container>
 
-      <div className={`mobile-menu-backdrop ${isOpen ? "open" : ""}`} onClick={() => setIsOpen(false)} aria-hidden="true" />
+      <div
+        className={`mobile-menu-backdrop ${isOpen ? "open" : ""}`}
+        onClick={() => setIsOpen(false)}
+        aria-hidden="true"
+      />
 
-      <div id="mobile-menu" className={`mobile-menu ${isOpen ? "open" : ""}`}>
+      <div id={menuId} className={`mobile-menu ${isOpen ? "open" : ""}`}>
         <Container>
-          <div className="mobile-menu-panel">
+          <div className="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
             <div className="mobile-menu-header">
               <div>
-                <div className="mobile-menu-title">Menu</div>
-                <div className="mobile-menu-subtitle">Navigate the portfolio</div>
+                <div className="mobile-menu-title">Navigation</div>
+                <div className="mobile-menu-subtitle">Quick links</div>
               </div>
               <button type="button" className="nav-close" aria-label="Close menu" onClick={() => setIsOpen(false)}>
                 ✕
