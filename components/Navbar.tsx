@@ -1,0 +1,2 @@
+import Link from "next/link"; import { site } from "@/lib/site"; import { Container } from "./Container";
+export function Navbar() { return <header className="site-header"><Container><div className="header-inner"><Link href="/" className="brand"><strong>{site.name}</strong><span>AI Systems Engineer</span></Link><nav className="nav" aria-label="Primary">{site.navigation.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}</nav></div></Container></header>; }

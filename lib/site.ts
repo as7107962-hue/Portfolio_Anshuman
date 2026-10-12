@@ -1,0 +1,35 @@
+export const site = {
+  name: "Anshuman",
+  title: "Anshuman | AI Systems Engineer",
+  description: "Anshuman builds production-ready AI systems, multi-agent workflows, automations, and lead generation systems for agencies, SaaS founders, and operations teams.",
+  url: "https://anshuman.example.com",
+  email: "anshuman974353@gmail.com",
+  whatsapp: "9643536741",
+  navigation: [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/process", label: "Process" },
+    { href: "/pricing", label: "Pricing" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/contact", label: "Contact" },
+  ],
+  services: [
+    { title: "Multi-agent systems", description: "Systems that split work across different steps, roles, or processes.", useCases: ["research workflows", "task routing", "lead qualification", "internal operations", "complex decision flows"] },
+    { title: "AI automations", description: "Repetitive workflows handled by connected AI logic instead of manual effort.", useCases: ["form processing", "follow-up systems", "lead handling", "notifications", "tool-to-tool automation"] },
+    { title: "Workflow systems", description: "Structured systems that make operations faster, cleaner, and more reliable.", useCases: ["sales workflows", "support workflows", "operations workflows", "content workflows", "admin workflows"] },
+    { title: "Lead generation systems", description: "Systems that help find, qualify, and handle leads more efficiently.", useCases: ["outreach workflows", "lead qualification", "follow-up systems", "routing and response workflows"] },
+  ],
+  pricing: [
+    { name: "Starter", price: "₹24,999", bestFor: ["1 agent", "1 workflow", "1 to 2 integrations"] },
+    { name: "Growth", price: "₹39,999", bestFor: ["2 to 3 agents", "multi-step workflow", "multiple integrations", "testing", "deployment"] },
+    { name: "Custom", price: "Starting at ₹59,999", bestFor: ["multi-agent systems", "complex workflows", "advanced integrations", "optimization", "support after launch"] },
+  ],
+  faqs: [
+    { question: "Can you work with our existing tools?", answer: "Yes. I build systems that plug into existing tools instead of forcing you to replace everything." },
+    { question: "How do you price projects?", answer: "Pricing depends on scope, workflow complexity, integrations, deployment needs, and support requirements." },
+    { question: "Do you provide support after launch?", answer: "Yes, depending on the project scope." },
+    { question: "Will I own the system?", answer: "Ownership and handoff terms are discussed before the project starts." },
+    { question: "What kind of projects do you not take?", answer: "I do not take vague projects with no clear workflow, no business use case, or no real need for automation." },
+  ],
+};
