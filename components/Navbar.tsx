@@ -91,17 +91,10 @@ export function Navbar() {
         <Container>
           <div className="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
             <div className="mobile-menu-header">
-              <div>
-                <div className="mobile-menu-title">Navigation</div>
-                <div className="mobile-menu-subtitle">Quick links to the main pages</div>
-              </div>
+              <div className="mobile-menu-title">Navigation</div>
               <button type="button" className="nav-close" aria-label="Close menu" onClick={() => setIsOpen(false)}>
                 ✕
               </button>
-            </div>
-
-            <div className="mobile-menu-copy">
-              Jump to a page or open the contact form. The menu closes after you tap a link.
             </div>
 
             <nav className="mobile-nav" aria-label="Mobile primary">
