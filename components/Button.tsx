@@ -1,3 +1,29 @@
-import Link from "next/link"; import type { ReactNode } from "react";
-type Props = { href?: string; children: ReactNode; variant?: "primary" | "secondary" | "ghost"; className?: string; type?: "button" | "submit"; onClick?: () => void; };
-export function Button({ href, children, variant = "secondary", className = "", type, onClick }: Props) { const cls = `btn ${variant === "primary" ? "primary" : variant === "ghost" ? "ghost" : ""} ${className}`.trim(); if (href) return <Link href={href} className={cls}>{children}</Link>; return <button className={cls} type={type ?? "button"} onClick={onClick}>{children}</button>; }
+import Link from "next/link";
+import type { MouseEventHandler, ReactNode } from "react";
+
+type Props = {
+  href?: string;
+  children: ReactNode;
+  variant?: "primary" | "secondary" | "ghost";
+  className?: string;
+  type?: "button" | "submit";
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+};
+
+export function Button({ href, children, variant = "secondary", className = "", type, onClick }: Props) {
+  const cls = `btn ${variant === "primary" ? "primary" : variant === "ghost" ? "ghost" : ""} ${className}`.trim();
+
+  if (href) {
+    return (
+      <Link href={href} className={cls} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <button className={cls} type={type ?? "button"} onClick={onClick}>
+      {children}
+    </button>
+  );
+}

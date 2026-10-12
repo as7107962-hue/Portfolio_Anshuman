@@ -21,7 +21,9 @@ export function Navbar() {
     if (!isOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -48,6 +50,7 @@ export function Navbar() {
             <nav className="nav desktop-nav" aria-label="Primary">
               {navItems.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
                 return (
                   <Link key={item.href} href={item.href} className={isActive ? "active" : undefined}>
                     {item.label}
@@ -63,7 +66,7 @@ export function Navbar() {
             <button
               type="button"
               className="nav-toggle"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isOpen}
               aria-controls={menuId}
               onClick={() => setIsOpen((prev) => !prev)}
@@ -76,10 +79,12 @@ export function Navbar() {
         </div>
       </Container>
 
-      <div
+      <button
+        type="button"
         className={`mobile-menu-backdrop ${isOpen ? "open" : ""}`}
         onClick={() => setIsOpen(false)}
         aria-hidden="true"
+        tabIndex={-1}
       />
 
       <div id={menuId} className={`mobile-menu ${isOpen ? "open" : ""}`}>
@@ -88,16 +93,21 @@ export function Navbar() {
             <div className="mobile-menu-header">
               <div>
                 <div className="mobile-menu-title">Navigation</div>
-                <div className="mobile-menu-subtitle">Quick links</div>
+                <div className="mobile-menu-subtitle">Quick links to the main pages</div>
               </div>
               <button type="button" className="nav-close" aria-label="Close menu" onClick={() => setIsOpen(false)}>
                 ✕
               </button>
             </div>
 
+            <div className="mobile-menu-copy">
+              Jump to a page or open the contact form. The menu closes after you tap a link.
+            </div>
+
             <nav className="mobile-nav" aria-label="Mobile primary">
               {navItems.map((item) => {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
                 return (
                   <Link
                     key={item.href}
@@ -105,7 +115,8 @@ export function Navbar() {
                     className={isActive ? "active" : undefined}
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <span aria-hidden="true">→</span>
                   </Link>
                 );
               })}
