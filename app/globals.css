@@ -15,14 +15,22 @@ body { margin: 0; color: var(--text); background: linear-gradient(180deg, #f9faf
 a { color: inherit; text-decoration: none; }
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 .site-shell { min-height: 100vh; display: flex; flex-direction: column; }
-header.site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); background: rgba(246,247,249,0.82); border-bottom: 1px solid rgba(217,222,230,0.8); }
+header.site-header { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(12px); background: rgba(246,247,249,0.88); border-bottom: 1px solid rgba(217,222,230,0.8); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; }
 .brand { display: flex; flex-direction: column; gap: 2px; }
 .brand strong { font-size: 1.02rem; letter-spacing: 0.02em; }
 .brand span { font-size: 0.82rem; color: var(--muted); }
+.header-actions { display: flex; align-items: center; gap: 12px; }
 .nav { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
-.nav a { color: var(--muted); font-size: 0.95rem; }
-.nav a:hover { color: var(--text); }
+.nav a { color: var(--muted); font-size: 0.95rem; transition: color 0.18s ease, opacity 0.18s ease; }
+.nav a:hover, .nav a.active { color: var(--text); }
+.desktop-nav { display: flex; }
+.desktop-cta { display: inline-flex; }
+.nav-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); align-items: center; justify-content: center; gap: 4px; padding: 0; cursor: pointer; }
+.nav-toggle span { display: block; width: 18px; height: 1.5px; background: var(--text); border-radius: 999px; }
+.nav-close { width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); font-size: 1rem; cursor: pointer; }
+.mobile-menu-backdrop { display: none; }
+.mobile-menu { display: none; }
 main { flex: 1; }
 .section { padding: 88px 0; }
 .section.tight { padding: 72px 0; }
@@ -36,7 +44,8 @@ main { flex: 1; }
 .hero-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(320px,0.8fr); gap: 32px; align-items: start; }
 .lead { font-size: 1.12rem; color: var(--muted); max-width: 60ch; margin: 0 0 28px; }
 .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-weight: 600; font-size: 0.96rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 18px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); font-weight: 600; font-size: 0.96rem; transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease; }
+.btn:hover { transform: translateY(-1px); }
 .btn.primary { background: var(--accent); color: var(--accent-contrast); border-color: var(--accent); }
 .btn.ghost { background: transparent; }
 .panel { border: 1px solid var(--border); background: rgba(255,255,255,0.8); box-shadow: 0 12px 40px rgba(16,21,28,0.06); border-radius: 14px; padding: 22px; }
@@ -76,5 +85,24 @@ textarea { min-height: 160px; resize: vertical; }
 .footer-links { display: flex; gap: 16px; flex-wrap: wrap; color: var(--muted); }
 .small { font-size: 0.9rem; color: var(--muted); }
 .note-box { border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface); border-radius: 12px; padding: 18px; }
-@media (max-width: 960px) { .hero-grid, .contact-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav { gap: 12px; } }
-@media (max-width: 720px) { .container { padding: 0 18px; } .section, .hero { padding: 68px 0; } .header-inner { flex-direction: column; align-items: flex-start; padding: 16px 0; } .nav { justify-content: flex-start; } .section-heading h1 { font-size: clamp(2.2rem, 12vw, 3.5rem); } .step { grid-template-columns: 1fr; } .step-index { width: 54px; height: 54px; } }
+@media (max-width: 960px) {
+  .hero-grid, .contact-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .desktop-nav, .desktop-cta { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .header-actions { margin-left: auto; }
+  .mobile-menu-backdrop { display: block; position: fixed; inset: 0; background: rgba(16, 21, 28, 0.34); opacity: 0; pointer-events: none; transition: opacity 0.22s ease; z-index: 45; }
+  .mobile-menu-backdrop.open { opacity: 1; pointer-events: auto; }
+  .mobile-menu { display: block; position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+  .mobile-menu-panel { margin: 12px 0 0; padding: 18px; border: 1px solid var(--border); border-radius: 18px; background: rgba(255,255,255,0.98); box-shadow: 0 24px 80px rgba(16,21,28,0.18); transform: translateY(-10px); opacity: 0; transition: transform 0.22s ease, opacity 0.22s ease; }
+  .mobile-menu.open { pointer-events: auto; }
+  .mobile-menu.open .mobile-menu-panel { transform: translateY(0); opacity: 1; }
+  .mobile-menu-header { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+  .mobile-menu-title { font-weight: 700; font-size: 1.02rem; }
+  .mobile-menu-subtitle { font-size: 0.9rem; color: var(--muted); margin-top: 3px; }
+  .mobile-nav { display: grid; gap: 8px; }
+  .mobile-nav a { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-weight: 600; color: var(--text); background: #fff; }
+  .mobile-nav a.active { background: #f3f5f8; }
+  .mobile-menu-actions { display: grid; gap: 10px; margin-top: 16px; }
+  .mobile-menu-cta, .mobile-menu-secondary { width: 100%; }
+}
+@media (max-width: 720px) { .container { padding: 0 18px; } .section, .hero { padding: 68px 0; } .header-inner { min-height: 72px; } .section-heading h1 { font-size: clamp(2.2rem, 12vw, 3.5rem); } .step { grid-template-columns: 1fr; } .step-index { width: 54px; height: 54px; } .btn { width: 100%; } .actions { flex-direction: column; } .footer-inner { gap: 16px; } }
